@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Pricedown";
+  src: url("assets/FONTS/Pricedown.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  
+}
+
+body {
+    font-family: "Pricedown";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+h1 {
+    font-size: 80px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    line-height: 1;
+}
+
+.screen {
+    display: flex;
+    width: 60vw;
+    height: 50vh;
+    border: 1px solid black;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-screen,
+#end-screen {
+  display: none;
+}
+
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
