@@ -2,9 +2,9 @@ class Enemy {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
-    this.x = 150
-    this.y = 300
-    this.width = 150
+    this.x = 450
+    this.y = 260
+    this.width = 60
     this.height = 200
     this.image = "./assets/IMAGES/policeman.png"
 
@@ -22,4 +22,10 @@ class Enemy {
 
   }
 
+  enemyMove() {
+    this.x -= 5
+    this.element.style.left = `${this.x}px`
+  }
+
+ 
 }
