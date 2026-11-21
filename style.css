@@ -51,3 +51,7 @@ h1 {
     background-color: black;
 }
 
+.bullet {
+    display: flex;
+    background-color: red;
+}

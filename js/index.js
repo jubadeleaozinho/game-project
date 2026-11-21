@@ -2,6 +2,7 @@ const startBtn = document.querySelector("#start-button")
 const endBtn = document.querySelector("#end-button")
 
 let game
+let bulletsArr = []
 
 window.addEventListener("load", () => {
 startBtn.addEventListener("click", () => {
@@ -10,9 +11,16 @@ startBtn.addEventListener("click", () => {
 })
 
 document.addEventListener("keydown", (e) => {
-    console.log("e.key")
     if (e.key === " ") {
+      console.log("jumping")
       game.player.jump()
+    }
+})
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+        console.log("shooting")
+        game.player.shoot()
     }
 })
 

@@ -3,9 +3,9 @@ class Enemy {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
     this.x = 450
-    this.y = 260
+    this.y = 300
     this.width = 60
-    this.height = 200
+    this.height = 150
     this.image = "./assets/IMAGES/policeman.png"
 
     this.element.style.position = "absolute"

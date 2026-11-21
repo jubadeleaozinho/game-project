@@ -23,16 +23,15 @@ class Player {
   }
 
   jump() {
-
+    if (this.isJumping) return
     this.isJumping = true
 
     const startY = this.y
-    const jumpHeight = 120
     const upDuration = 600
     const downDuration = 600
 
     const upInterval = setInterval(() => {
-      this.y -= jumpHeight / (upDuration / 100)
+      this.y -= 25
       this.element.style.top = `${this.y}px`
     }, 100)
 
@@ -40,22 +39,56 @@ class Player {
       clearInterval(upInterval)
 
     const downInterval = setInterval(() => {
-      this.y += jumpHeight / (downDuration / 100)
+      this.y += 25
       this.element.style.top = `${this.y}px`
     }, 100)
 
     setTimeout(() => {
       clearInterval(downInterval)
       this.y = startY
-      this.element.style.top = `{this.y}px`
+      this.element.style.top = `${this.y}px`
       this.isJumping = false
     }, downDuration)
 
     }, upDuration)
   }
 
+  shoot() {
+    let bulletX = this.x + 20; 
+    let bulletY = this.y + 20; 
+    
+    let newBullet = new Bullet(bulletX, bulletY);
+    bulletsArr.push(newBullet);
+  }
+  }
+
+class Bullet {
+  constructor(x, y) {
+    this.element = document.createElement("div")
+    this.gameScreen = document.querySelector("#game-screen")
+    this.gameScreen.append(this.element)
+    this.element.className = "bullet"
+
+    this.x = x;
+    this.y = y;
+    this.width = 30;
+    this.height = 30;
+    this.speed = 5;
+
+    this.element.style.width = `${this.width}px`;
+    this.element.style.height = `${this.height}px`;
+
+    this.element.style.position = "absolute";
+    this.element.style.left = `${this.x}px`;
+    this.element.style.top = `${this.y}px`;
+  }
+
+  bulletMoving() {
+    this.x += this.speed;
+    this.element.style.left = `${this.x}px`;
   }
 
 
+}
 
 
