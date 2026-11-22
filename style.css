@@ -45,9 +45,36 @@ h1 {
   display: none;
 }
 
+#city-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  width: max-content;
+  animation: slider 60s linear infinite;
+  z-index: 1;
+}
+
+#city-slider img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 #game-screen-elements {
     display: flex;
     flex-direction: column;
+    z-index: 2;
 }
 
 #start-screen {
@@ -56,9 +83,17 @@ h1 {
     background-color: black;
 }
 
-
+.player {
+    z-index: 10;
+}
 
 .bullet {
     display: flex;
     background-color: red;
+    z-index: 10;
+    
+}
+
+.enemy {
+    z-index: 10;
 }

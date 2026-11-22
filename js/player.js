@@ -2,11 +2,12 @@ class Player {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
+    this.element.className = "player";
     this.x = 0
-    this.y = 300
-    this.width = 150
-    this.height = 150
-    this.image = "./assets/IMAGES/GTDOGGO.png"
+    this.y = 390
+    this.width = 100
+    this.height = 100
+    this.image = "./assets/IMAGES/GTDOGGO.gif"
     this.isJumping = false
     this.element.style.position = "absolute"
     this.element.style.width = `${this.width}px`

@@ -2,11 +2,12 @@ class Enemy {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
-    this.x = 450
-    this.y = 300
+    this.element.className = "enemy";
+    this.x = 900
+    this.y = 320
     this.width = 60
     this.height = 150
-    this.image = "./assets/IMAGES/policeman.png"
+    this.image = "./assets/IMAGES/policeman.gif"
 
     this.element.style.position = "absolute"
     this.element.style.width = `${this.width}px`
