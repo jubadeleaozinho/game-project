@@ -41,8 +41,13 @@ h1 {
 
 #game-screen,
 #end-screen {
-  display: none;
   overflow: hidden;
+  display: none;
+}
+
+#game-screen-elements {
+    display: flex;
+    flex-direction: column;
 }
 
 #start-screen {
@@ -50,6 +55,8 @@ h1 {
     flex-direction: column;
     background-color: black;
 }
+
+
 
 .bullet {
     display: flex;

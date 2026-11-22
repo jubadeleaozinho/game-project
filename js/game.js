@@ -4,19 +4,26 @@ class Game {
     this.gameScreen = document.querySelector("#game-screen")
     this.endScreen = document.querySelector("#end-screen")
 
+    this.lifeContainer = document.querySelector(".life")
+
     this.enemiesArr = []
 
-    this.lives = 3
+    this.life = 100
+
+    this.enemyInterval = null
+    this.gameLoopInterval = null
+    
   }
 
   startGame() {
     this.startScreen.style.display = "none"
     this.gameScreen.style.display = "flex"
-
+    this.lifeContainer.textContent = this.life
     this.player = new Player()
   
-    setInterval(() => { this.spawnEnemy()}, 2000)
-    setInterval(() => {
+    this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2000)
+    
+    this.gameLoopInterval = setInterval(() => {
          this.gameLoop()    
     }, 50)
   }
@@ -34,9 +41,12 @@ class Game {
         this.checkCollision(this.player, this.enemiesArr[i])
     }
 
-    bulletsArr.forEach((bullet) => {
+    bulletsArr.forEach((bullet, i) => {
         bullet.bulletMoving()
-        this.checkBulletEnemyCollision(bullet)
+        if (this.checkBulletEnemyCollision(bullet)) {
+            bullet.element.remove()
+            bulletsArr.splice(i, 1)
+        }
     })
   }
 
@@ -50,8 +60,13 @@ class Game {
         console.log("Collision")
         this.enemiesArr.splice(enemyIndex, 1)
         enemy.element.remove()
-        this.lives -= 1
-        console.log(this.lives)
+        this.life -= 10
+        this.lifeContainer.textContent = this.life
+        console.log(this.life)
+        }
+
+        if (this.life <= 0) {
+            this.gameOver()
         }
     }
 
@@ -75,21 +90,30 @@ class Game {
             ){
                 console.log("Bullet collided with enemy")
                 
-                const removedEnemy = this.enemiesArr.splice(i, 1)
-                removedEnemy[0].element.remove()
+                this.enemiesArr[i].element.remove()
+                this.enemiesArr.splice(i, 1)
+                
                 return true;
             }
         }
+        return false;
         
     }
   
-
-    
-
   endButton() {
     this.startScreen.style.display = "none"
     this.gameScreen.style.display = "none"
     this.endScreen.style.display = "flex"
+    clearInterval(this.enemyInterval)
+    clearInterval(this.gameLoopInterval)
+  }
+
+  gameOver() {
+    this.startScreen.style.display = "none"
+    this.gameScreen.style.display = "none"
+    this.endScreen.style.display = "flex"
+    clearInterval(this.enemyInterval)
+    clearInterval(this.gameLoopInterval)
   }
   
 }
