@@ -32,7 +32,7 @@ class Player {
     const downDuration = 600
 
     const upInterval = setInterval(() => {
-      this.y -= 25
+      this.y -= 35
       this.element.style.top = `${this.y}px`
     }, 100)
 
@@ -40,7 +40,7 @@ class Player {
       clearInterval(upInterval)
 
     const downInterval = setInterval(() => {
-      this.y += 25
+      this.y += 35
       this.element.style.top = `${this.y}px`
     }, 100)
 
