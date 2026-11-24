@@ -8,11 +8,24 @@
   src: url("assets/FONTS/Pricedown.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  
+}
+
+@font-face {
+  font-family: "Rage";
+  src: url("assets/FONTS/RAGE.TTF") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("assets/FONTS/Futura Bold.otf") format("truetype");
+  font-weight: normal;
+  font-style: bold;
 }
 
 body {
-    font-family: "Pricedown";
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,12 +34,27 @@ body {
 }
 
 h1 {
+    font-family: "Pricedown";
     font-size: 80px;
     align-items: center;
     justify-content: center;
     color: white;
     -webkit-text-stroke: 2px black;
     line-height: 1;
+}
+
+h2 {
+    font-family: "Rage";
+    font-size: 60px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(224, 138, 212);
+}
+
+p {
+  font-family: "Futura";
+  font-size: 20px;
+  color: white;
 }
 
 .screen {
@@ -85,6 +113,7 @@ h1 {
 
 .life {
   display: flex;
+  font-family: "Pricedown";
   justify-content: right;
   font-size: 20px;
 }
