@@ -5,8 +5,10 @@ class Game {
     this.endScreen = document.querySelector("#end-screen")
 
     this.lifeContainer = document.querySelector(".life")
+    this.policeStars = document.querySelector(".police-stars")
 
     this.enemiesArr = []
+    this.defeatedPolice = 0
 
     this.life = 100
 
@@ -18,7 +20,7 @@ class Game {
   startGame() {
     this.startScreen.style.display = "none"
     this.gameScreen.style.display = "flex"
-    this.lifeContainer.textContent = this.life
+    this.lifeContainer.textContent = this.life + "♥"
     this.player = new Player()
   
     this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2000)
@@ -48,6 +50,7 @@ class Game {
             bulletsArr.splice(i, 1)
         }
     })
+    this.getPoliceStars()
   }
 
   checkCollision(player, enemy, enemyIndex) {
@@ -61,7 +64,7 @@ class Game {
         this.enemiesArr.splice(enemyIndex, 1)
         enemy.element.remove()
         this.life -= 10
-        this.lifeContainer.textContent = this.life
+        this.lifeContainer.textContent = this.life + "♥"
         console.log(this.life)
         }
 
@@ -92,13 +95,34 @@ class Game {
                 
                 this.enemiesArr[i].element.remove()
                 this.enemiesArr.splice(i, 1)
-                
+                this.defeatedPolice += 1
                 return true;
             }
         }
         return false;
         
     }
+
+  getPoliceStars() {
+    switch (this.defeatedPolice) {
+      case 3:
+        this.policeStars.textContent = "★☆☆☆☆☆"
+        break;
+      case 6:
+        this.policeStars.textContent = "★★☆☆☆☆"
+        break;
+      case 9:
+        this.policeStars.textContent = "★★★☆☆☆"
+        break;
+      case 12:
+        this.policeStars.textContent = "★★★★☆☆"
+        break;
+      case 15:
+        this.policeStars.textContent = "★★★★★☆"
+        break;
+    }
+
+  }
   
   endButton() {
     this.startScreen.style.display = "none"

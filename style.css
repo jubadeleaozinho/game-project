@@ -43,7 +43,10 @@ h1 {
 #end-screen {
   overflow: hidden;
   display: none;
+  position: relative;
 }
+
+
 
 #city-slider {
   position: absolute;
@@ -74,7 +77,16 @@ h1 {
 #game-screen-elements {
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
     z-index: 2;
+}
+
+.life {
+  display: flex;
+  justify-content: right;
+  font-size: 20px;
 }
 
 #start-screen {
