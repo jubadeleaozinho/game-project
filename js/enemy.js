@@ -21,12 +21,15 @@ class Enemy {
 
     this.gameScreen.appendChild(this.element)
 
+    this.speed = Math.floor((Math.random() * 6) + 2)
+
   }
 
   enemyMove() {
-    this.x -= 5
+    this.x -= this.speed
     this.element.style.left = `${this.x}px`
   }
 
  
 }
+

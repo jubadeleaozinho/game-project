@@ -10,6 +10,10 @@ class Game {
     this.enemiesArr = []
     this.defeatedPolice = 0
 
+    this.twoStarWantedLevel = false
+    this.threeStarWantedLevel = false
+    this.fourStarWantedLevel = false
+
     this.life = 100
 
     this.enemyInterval = null
@@ -23,18 +27,20 @@ class Game {
     this.lifeContainer.textContent = this.life + "♥"
     this.player = new Player()
   
-    this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2000)
-    
+    this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3500)
+
     this.gameLoopInterval = setInterval(() => {
          this.gameLoop()    
     }, 50)
   }
 
   spawnEnemy() {
-    if (this.enemiesArr.length <= 2) this.enemiesArr.push(new Enemy())
+    this.enemiesArr.push(new Enemy())
   }
 
+
   gameLoop() {
+    
     this.enemiesArr.forEach((enemy) => {
         enemy.enemyMove()
     })
@@ -51,6 +57,26 @@ class Game {
         }
     })
     this.getPoliceStars()
+
+    if (this.defeatedPolice >= 3 && !this.twoStarWantedLevel) {
+      this.twoStarWantedLevel = true
+      clearInterval(this.enemyInterval)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3000)
+    }
+
+    if (this.defeatedPolice >=6 && !this.threeStarWantedLevel) {
+      this.threeStarWantedLevel = true
+      clearInterval(this.enemyInterval)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2500)
+    }
+
+    if (this.defeatedPolice >=9 && !this.fourStarWantedLevel) {
+      this.fourStarWantedLevel = true
+      this.enemiesArr.forEach(enemy => {
+        enemy.speed += 2
+        console.log("Enemy goes faster!")
+      })
+    }
   }
 
   checkCollision(player, enemy, enemyIndex) {

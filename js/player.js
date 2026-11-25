@@ -29,18 +29,20 @@ class Player {
 
     const startY = this.y
     const upDuration = 600
+    const lingerDuration = 480
     const downDuration = 600
 
     const upInterval = setInterval(() => {
-      this.y -= 35
+      this.y -= 50
       this.element.style.top = `${this.y}px`
     }, 100)
 
     setTimeout(() => {
       clearInterval(upInterval)
 
+    setTimeout(() => {
     const downInterval = setInterval(() => {
-      this.y += 35
+      this.y += 50
       this.element.style.top = `${this.y}px`
     }, 100)
 
@@ -50,6 +52,8 @@ class Player {
       this.element.style.top = `${this.y}px`
       this.isJumping = false
     }, downDuration)
+
+    }, lingerDuration)
 
     }, upDuration)
   }
