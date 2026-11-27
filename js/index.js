@@ -3,6 +3,7 @@ const endBtn = document.querySelector("#end-button")
 
 let game
 let bulletsArr = []
+let canShoot = true
 
 window.addEventListener("load", () => {
 startBtn.addEventListener("click", () => {
@@ -18,11 +19,16 @@ document.addEventListener("keydown", (e) => {
 })
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") {
+    if (e.key === "ArrowRight" && canShoot === true) {
         console.log("shooting")
         game.player.shoot()
-    }
+        canShoot = false
+    setTimeout(() => {
+        canShoot = true;
+      }, 2000);
+      }
 })
+
 
 endBtn.addEventListener("click", () => {
     game.endButton()

@@ -27,7 +27,7 @@ class Game {
     this.lifeContainer.textContent = this.life + "♥"
     this.player = new Player()
   
-    this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3500)
+    this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3000)
 
     this.gameLoopInterval = setInterval(() => {
          this.gameLoop()    
@@ -61,21 +61,21 @@ class Game {
     if (this.defeatedPolice >= 3 && !this.twoStarWantedLevel) {
       this.twoStarWantedLevel = true
       clearInterval(this.enemyInterval)
-      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3000)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2800)
     }
 
     if (this.defeatedPolice >=6 && !this.threeStarWantedLevel) {
       this.threeStarWantedLevel = true
-      clearInterval(this.enemyInterval)
-      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2500)
-    }
-
-    if (this.defeatedPolice >=9 && !this.fourStarWantedLevel) {
-      this.fourStarWantedLevel = true
       this.enemiesArr.forEach(enemy => {
         enemy.speed += 2
         console.log("Enemy goes faster!")
       })
+    }
+
+    if (this.defeatedPolice >=9 && !this.fourStarWantedLevel) {
+      this.fourStarWantedLevel = true
+      clearInterval(this.enemyInterval)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2500)
     }
   }
 

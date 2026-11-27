@@ -21,7 +21,7 @@ class Enemy {
 
     this.gameScreen.appendChild(this.element)
 
-    this.speed = Math.floor((Math.random() * 6) + 2)
+    this.speed = Math.floor((Math.random() * 6) + 5)
 
   }
 
