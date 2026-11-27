@@ -10,6 +10,7 @@ class Game {
     this.enemiesArr = []
     this.defeatedPolice = 0
 
+    this.oneStarWantedLevel = false
     this.twoStarWantedLevel = false
     this.threeStarWantedLevel = false
     this.fourStarWantedLevel = false
@@ -56,23 +57,31 @@ class Game {
             bulletsArr.splice(i, 1)
         }
     })
+
     this.getPoliceStars()
 
-    if (this.defeatedPolice >= 3 && !this.twoStarWantedLevel) {
-      this.twoStarWantedLevel = true
+    if (this.defeatedPolice >= 3 && !this.oneStarWantedLevel) {
+      this.oneStarWantedLevel = true
       clearInterval(this.enemyInterval)
-      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2800)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2500)
+      console.log("One star wanted level! Enemies will now spawn more often")
     }
 
-    if (this.defeatedPolice >=6 && !this.threeStarWantedLevel) {
-      this.threeStarWantedLevel = true
+    if (this.defeatedPolice >= 6 && !this.twoStarWantedLevel) {
+      this.twoStarWantedLevel = true
       this.enemiesArr.forEach(enemy => {
-        enemy.speed += 2
-        console.log("Enemy goes faster!")
-      })
+        enemy.speed += 2 })
+      console.log("Two star wanted level! Enemies will now run faster")
     }
 
-    if (this.defeatedPolice >=9 && !this.fourStarWantedLevel) {
+    if (this.defeatedPolice >=9 && !this.threeStarWantedLevel) {
+      this.threeStarWantedLevel = true
+      clearInterval(this.enemyInterval)
+      this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2000)
+      console.log("Three star wanted level! Enemies now are not only faster but they spawn even more often!")
+    }
+
+    if (this.defeatedPolice >=12 && !this.fourStarWantedLevel) {
       this.fourStarWantedLevel = true
       clearInterval(this.enemyInterval)
       this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 2500)
