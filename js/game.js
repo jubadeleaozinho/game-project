@@ -11,8 +11,10 @@ class Game {
     this.enemiesArr = []
     this.enemyInterval = null
     this.defeatedPolice = 0
+    this.boss = null
     this.bossDamage = 0
 
+    this.bulletsArr = []
     this.gameLoopInterval = null
     this.life = 100
     this.tookHit = false
@@ -33,6 +35,8 @@ class Game {
   startGame() {
     this.startScreen.style.display = "none"
     this.gameScreen.style.display = "flex"
+    this.endScreen.style.display = "none"
+    this.winScreen.style.display = "none"
     this.lifeContainer.textContent = this.life + "♥"
     this.player = new Player()
     this.enemyInterval = setInterval(() => { this.spawnEnemy()}, 3000)
@@ -49,13 +53,13 @@ class Game {
         this.checkCollision(this.player, this.enemiesArr[i])}
 
     /* MAKE BULLETS MOVE AND CHECK COLLISIONS AGAINST ENEMIES AND THE FINAL BOSS */
-    for (let i = bulletsArr.length - 1; i >= 0; i--) {
-        const bullet = bulletsArr[i]
+    for (let i = this.bulletsArr.length - 1; i >= 0; i--) {
+        const bullet = this.bulletsArr[i]
         bullet.bulletMoving()
 
       if (this.checkBulletEnemyCollision(bullet) || this.checkBulletBossCollision(bullet)) {
         bullet.element.remove()
-        bulletsArr.splice(i, 1)
+        this.bulletsArr.splice(i, 1)
 
       if (this.bossDamage >= 10) {
         this.boss.defeated()
@@ -219,4 +223,32 @@ class Game {
     clearInterval(this.gameLoopInterval)
   }
 
+
+  restartGame() {
+    clearInterval(this.gameLoopInterval)
+    clearInterval(this.enemyInterval)
+
+    this.enemiesArr.forEach(enemy => enemy.element.remove())
+    this.bulletsArr.forEach(bullet => bullet.element.remove())
+    if (this.boss) this.boss.element.remove()
+    if (this.player) this.player.element.remove()
+
+    this.enemiesArr = []
+    this.bulletsArr = []
+    this.boss = null
+
+    this.life = 100
+    this.tookHit = false
+    this.defeatedPolice = 0
+    this.bossDamage = 0
+    this.oneStarWantedLevel = false
+    this.twoStarWantedLevel = false
+    this.threeStarWantedLevel = false
+    this.fourStarWantedLevel = false
+    this.fiveStarWantedLevel = false
+    this.sixStarWantedLevel = false
+    this.policeStars.textContent = "☆☆☆☆☆☆"
+
+    this.startGame()
+}
 }

@@ -62,7 +62,7 @@ class Player {
     let bulletX = this.x + 20; 
     let bulletY = this.y + 20; 
     let newBullet = new Bullet(bulletX, bulletY);
-    bulletsArr.push(newBullet);
+    game.bulletsArr.push(newBullet);
   }
 }
 

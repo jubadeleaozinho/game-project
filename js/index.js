@@ -1,8 +1,8 @@
 const startBtn = document.querySelector("#start-button")
 const endBtn = document.querySelector("#end-button")
+const restartBtn = document.querySelector("#restart-game-button")
 
 let game
-let bulletsArr = []
 let canShoot = true
 
 /* START NEW GAME */ 
@@ -14,6 +14,7 @@ startBtn.addEventListener("click", () => {
 
 /* JUMP CONTROL */ 
 document.addEventListener("keydown", (e) => {
+    if (!game) return
     if (e.key === " ") {
       console.log("jumping")
       game.player.jump()
@@ -22,6 +23,7 @@ document.addEventListener("keydown", (e) => {
 
 /* SHOOT CONTROL */ 
 document.addEventListener("keydown", (e) => {
+    if (!game) return
     if (e.key === "ArrowRight" && canShoot === true) {
         console.log("shooting")
         game.player.shoot()
@@ -34,6 +36,7 @@ document.addEventListener("keydown", (e) => {
 
 /* SHORTCUT TO BOSS TEST */ 
 document.addEventListener("keydown", (e) => {
+    if (!game) return
     if (e.key === "ArrowUp") {
         game.defeatedPolice = 18
         console.log("BOSS TEST")
@@ -45,4 +48,12 @@ endBtn.addEventListener("click", () => {
     game.endButton()
 })
 
+/* RESTART GAME BUTTON */ 
+restartBtn.addEventListener("click", () => {
+    if (!game) return
+    canShoot = true
+    game.restartGame()
 })
+
+})
+
