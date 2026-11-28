@@ -3,7 +3,7 @@ class Enemy {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
     this.element.className = "enemy";
-    this.x = 900
+    this.x = this.gameScreen.offsetWidth
     this.y = 320
     this.width = 60
     this.height = 150
@@ -21,15 +21,12 @@ class Enemy {
 
     this.gameScreen.appendChild(this.element)
 
-    this.speed = Math.floor((Math.random() * 6) + 5)
-
+    this.speed = Math.floor((Math.random() * 3) + 9)
   }
 
   enemyMove() {
     this.x -= this.speed
     this.element.style.left = `${this.x}px`
   }
-
- 
 }
 

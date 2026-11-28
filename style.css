@@ -57,6 +57,17 @@ p {
   color: white;
 }
 
+#game-screen,
+#end-screen {
+  overflow: hidden;
+  display: none;
+  position: relative;
+}
+
+#win-screen {
+  display: none;
+}
+
 .screen {
     display: flex;
     width: 80vw;
@@ -67,12 +78,7 @@ p {
     align-items: center;
 }
 
-#game-screen,
-#end-screen {
-  overflow: hidden;
-  display: none;
-  position: relative;
-}
+
 
 
 
@@ -128,13 +134,25 @@ p {
     z-index: 10;
 }
 
-.bullet {
+/*.bullet {
     display: flex;
     background-color: red;
     z-index: 10;
     
+} */
+
+.bullet {
+  z-index: 10;
 }
 
 .enemy {
     z-index: 10;
+}
+
+.boss {
+    z-index: 10;
+}
+
+.win-text {
+  font-family: "Pricedown";
 }

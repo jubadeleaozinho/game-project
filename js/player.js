@@ -2,6 +2,7 @@ class Player {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen")
     this.element = document.createElement("div")
+
     this.element.className = "player";
     this.x = 0
     this.y = 390
@@ -20,9 +21,9 @@ class Player {
     this.element.style.backgroundSize = `cover`
 
     this.gameScreen.appendChild(this.element)
-
   }
 
+  /* JUMP METHOD */ 
   jump() {
     if (this.isJumping) return
     this.isJumping = true
@@ -40,32 +41,31 @@ class Player {
     setTimeout(() => {
       clearInterval(upInterval)
 
-    setTimeout(() => {
-    const downInterval = setInterval(() => {
-      this.y += 50
-      this.element.style.top = `${this.y}px`
-    }, 100)
+      setTimeout(() => {
+        const downInterval = setInterval(() => {
+        this.y += 50
+        this.element.style.top = `${this.y}px`
+        }, 100)
 
-    setTimeout(() => {
-      clearInterval(downInterval)
-      this.y = startY
-      this.element.style.top = `${this.y}px`
-      this.isJumping = false
-    }, downDuration)
-
-    }, lingerDuration)
-
+        setTimeout(() => {
+        clearInterval(downInterval)
+        this.y = startY
+        this.element.style.top = `${this.y}px`
+        this.isJumping = false
+        }, downDuration)
+      }, lingerDuration)
     }, upDuration)
   }
 
+  /* SHOOT METHOD */ 
   shoot() {
     let bulletX = this.x + 20; 
     let bulletY = this.y + 20; 
-    
     let newBullet = new Bullet(bulletX, bulletY);
     bulletsArr.push(newBullet);
   }
-  }
+}
+
 
 class Bullet {
   constructor(x, y) {
@@ -76,12 +76,17 @@ class Bullet {
 
     this.x = x;
     this.y = y;
-    this.width = 30;
-    this.height = 30;
+    this.width = 50;
+    this.height = 50;
     this.speed = 5;
 
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
+
+    this.image = "./assets/IMAGES/fireball.gif"
+    this.element.style.backgroundImage = `url("${this.image}")`
+    this.element.style.backgroundPosition = `center`
+    this.element.style.backgroundSize = `cover`
 
     this.element.style.position = "absolute";
     this.element.style.left = `${this.x}px`;
@@ -92,8 +97,6 @@ class Bullet {
     this.x += this.speed;
     this.element.style.left = `${this.x}px`;
   }
-
-
 }
 
 
